@@ -1,0 +1,23 @@
+{
+  "name": "anniversary-quiz",
+  "version": "1.0.0",
+  "description": "A fun and interactive quiz to celebrate 7 months of love.",
+  "main": "index.html",
+  "scripts": {
+    "build": "tailwindcss build css/tailwind.css -o css/styles.css",
+    "watch": "tailwindcss build css/tailwind.css -o css/styles.css --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "quiz",
+    "anniversary",
+    "tailwindcss",
+    "frontend",
+    "serverless"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

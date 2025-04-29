@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Aniversário de Namoro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['"Poppins"', 'sans-serif'],
+                        'dancing': ['"Dancing Script"', 'cursive']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.5/dist/tsparticles.min.js"></script>
+    <style>
+        .scale-0 { transform: scale(0); }
+        .scale-95 { transform: scale(0.95); }
+        .scale-100 { transform: scale(1); }
+        .scale-110 { transform: scale(1.10); }
+        
+        #quiz-container, #final-message, #carousel {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        opacity 0.5s ease;
+        }
+        
+        /* Efeito de pulsação para o botão correto */
+        @keyframes correct-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        
+        .pulse-correct {
+            animation: correct-pulse 1.5s infinite;
+        }
+        
+        /* Shake aprimorado para botão errado */
+        @keyframes enhanced-shake {
+            0%, 100% { transform: translateX(0); } 
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .enhanced-shake {
+            animation: enhanced-shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        /* Efeito ripple */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+        }
+        
+        @keyframes ripple {
+            to { transform: scale(2.5); opacity: 0; }
+        }
+        
+        /* Confetes caindo */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            z-index: 1000;
+            animation: confetti-fall linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 flex flex-col items-center justify-center min-h-screen overflow-hidden relative">
+    <!-- Background elements -->
+    <div class="absolute inset-0 overflow-hidden z-0">
+        <div class="absolute top-20 left-20 w-64 h-64 rounded-full bg-pink-300 opacity-20 animate-float"></div>
+        <div class="absolute bottom-40 right-10 w-80 h-80 rounded-full bg-purple-400 opacity-20 animate-pulse-slow"></div>
+        <div class="absolute top-40 right-40 w-40 h-40 rounded-full bg-yellow-200 opacity-20 animate-float"></div>
+    </div>
+    
+    <div class="container mx-auto text-center z-10 px-4">
+        <h1 class="font-dancing text-6xl font-bold text-white mb-10 animate-float drop-shadow-lg">7 Meses de Amor!</h1>
+        
+        <!-- Quiz container com efeito de glassmorphism -->
+        <div id="quiz-container" class="backdrop-blur-md bg-white/30 rounded-2xl shadow-2xl p-8 mb-8 hidden border border-white/20">
+            <div id="question" class="text-2xl mb-6 text-white font-medium"></div>
+            <div id="options" class="flex flex-col space-y-4"></div>
+            <div id="feedback" class="mt-6 text-xl font-medium"></div>
+        </div>
+        
+        <!-- Botão iniciar com design melhorado -->
+        <button id="start-quiz" class="bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-bold py-3 px-8 rounded-full hover:from-yellow-300 hover:to-amber-400 transform transition-all hover:scale-105 shadow-lg text-lg">
+            Iniciar Nossa Jornada ❤️
+        </button>
+        
+        <!-- Mensagem final com animação -->
+        <div id="final-message" class="text-4xl font-dancing font-bold text-white mt-10 hidden animate-bounce">
+            FELIZ 7 MESES MEU AMOOR!!! 💝💝
+        </div>
+        
+        <div id="carousel" class="mt-10 overflow-hidden relative hidden backdrop-blur-sm bg-white/10 rounded-xl p-4 border border-white/20">
+            <div class="carousel-inner flex transition-transform duration-500" id="carousel-inner"></div>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>
