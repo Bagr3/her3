@@ -1,6 +1,6 @@
 const quizData = [
     {
-        title: "Onde foi nosso primeiro encontro?",
+        title: "Onde foi nosso primeiro encontro??",
         question: "Escolha a opção correta:",
         options: ["Na frente da casa da Sara kkk", "Shopping Bosque", "Shopping CG", "Centro", "Parque das Nações"],
         correct: 2
@@ -74,7 +74,7 @@ const quizData = [
     {
         title: "O que vou te dar de presente nos nossos 7 meses?",
         question: "Escolha a opção correta:",
-        options: ["Flores e chocolate", "Flores e um salve", "Par de meias", "Tratado de tordesilhas", "Uma moto"],
+        options: ["Um tequinho aqui e um tequinho ali", "um bejo e um salve", "Par de meias", "Tratado de tordesilhas", "Uma moto"],
         correct: 0
     }
 ];
